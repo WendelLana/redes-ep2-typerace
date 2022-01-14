@@ -26,6 +26,8 @@ Para rodar um cliente
 * Não há ordem específica para enviar as palavras
 * Vence aquele que acertar todas as palavras mais rápido
 * Critério de desempate será a quantidade de respostas erradas
+* O arquivo words.txt na pasta server é utilzado para construir a lista de palavras
+* A quantidade de palavras é definida ao iniciar a partida
 
 #### Instruções:
 Digite "Iniciar [quantidade de palavras]" para começar o jogo, caso a quantidade não seja fornecida serão utilizadas 15 palavras\
