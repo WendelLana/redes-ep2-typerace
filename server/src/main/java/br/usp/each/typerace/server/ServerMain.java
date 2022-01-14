@@ -4,6 +4,9 @@ import org.java_websocket.server.WebSocketServer;
 
 import java.util.HashMap;
 
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+
 public class ServerMain {
 
     private WebSocketServer server;
@@ -13,8 +16,9 @@ public class ServerMain {
     }
 
     public void init() {
-        System.out.println("Iniciando servidor...");
-        // TODO: Implementar
+        System.out.println("Carregando servidor...");
+        //inicializa o servidor
+        server.start();
     }
 
     public static void main(String[] args) {

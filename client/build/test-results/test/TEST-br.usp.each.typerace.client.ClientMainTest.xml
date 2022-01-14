@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.usp.each.typerace.client.ClientMainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-13T22:40:04" hostname="DESKTOP-RJNUR4N" time="1.686">
+  <properties/>
+  <testcase name="deveSeConectarAUmServidor()" classname="br.usp.each.typerace.client.ClientMainTest" time="1.686"/>
+  <system-out><![CDATA[Iniciando cliente: testId
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

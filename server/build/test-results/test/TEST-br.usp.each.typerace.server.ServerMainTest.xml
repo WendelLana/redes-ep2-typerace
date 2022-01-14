@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.usp.each.typerace.server.ServerMainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-13T22:39:55" hostname="DESKTOP-RJNUR4N" time="0.315">
+  <properties/>
+  <testcase name="deveIniciarUmServidor()" classname="br.usp.each.typerace.server.ServerMainTest" time="0.315"/>
+  <system-out><![CDATA[Carregando servidor...
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
