@@ -28,5 +28,5 @@ Para rodar um cliente
 * Critério de desempate será a quantidade de respostas erradas
 
 #### Instruções:
-Digite "Iniciar [quantidade de palavras]" para começar o jogo com a quantidade de palavras indicada, caso não fornecido serão utilizadas 15 palavras por padrão
+Digite "Iniciar [quantidade de palavras]" para começar o jogo, caso a quantidade não seja fornecida serão utilizadas 15 palavras\
 Digite "Sair" para se desconectar do servidor
