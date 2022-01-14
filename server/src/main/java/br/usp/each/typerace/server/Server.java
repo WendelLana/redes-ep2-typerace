@@ -103,11 +103,23 @@ public class Server extends WebSocketServer {
             String playerName = getPlayerName(conn.getResourceDescriptor());
             Player currentPlayer = players.get(playerName);
 
+            //limpa a tela do jogador e imprime a lista de palavras restantes a cada 10 mensagens enviadas
+            int numTentativas = currentPlayer.getCorrects() + currentPlayer.getIncorrects();
+            if (numTentativas != 0 && numTentativas % 10 == 0) {
+                conn.send("clear");
+                conn.send("Palavras restantes:\n");
+                String listString = String.join(", ", currentPlayer.getList());
+                conn.send(listString);
+            }
+
+            //Retira espaços em branco e deixa a mensagem em letras minúsculas
+            String msg = message.toLowerCase().trim();
+
             //verifica se a mensagem enviada pelo cliente eh uma das palavras do jogo
-            if (currentPlayer.getList().contains(message.toLowerCase())) {
+            if (currentPlayer.getList().contains(msg)) {
                 //contabiliza acerto do jogador e remove a palavra para nao haver repeticoes
                 currentPlayer.addCorrect();
-                currentPlayer.removeWord(message.toLowerCase());
+                currentPlayer.removeWord(msg);
                 conn.send("Acertou! ("+ message +")");
 
                 //verifica se todas palavras ja foram digitadas pelo jogador se sim finaliza o jogo
@@ -136,10 +148,11 @@ public class Server extends WebSocketServer {
     public static LinkedHashMap<String, Player> sortByCorrects(Map<String, Player> map) {
         LinkedList<Map.Entry<String, Player>> list = new LinkedList<Map.Entry<String, Player>>(map.entrySet());
  
-        //ordena a lista utilizando um comparador dos acertos entre jogadores
+        //ordena a lista utilizando um comparador dos acertos entre jogadores e utiliza os erros como desempate
         Collections.sort(list, new Comparator<Map.Entry<String, Player>>() {
             public int compare(Map.Entry<String, Player> conn1, Map.Entry<String, Player> conn2) {
-                if (conn1.getValue().getCorrects() < conn2.getValue().getCorrects()) {
+                if (conn1.getValue().getCorrects() < conn2.getValue().getCorrects() || (conn1.getValue().getCorrects() == 
+                conn2.getValue().getCorrects() && conn1.getValue().getIncorrects() > conn2.getValue().getIncorrects())) {
                     return 1;
                 } else {
                     return -1;
@@ -214,7 +227,7 @@ public class Server extends WebSocketServer {
                 broadcast(i +" - "+ player.getName() +" acertou "+ player.getCorrects() +" palavras e errou "+ player.getIncorrects());
             }
             broadcast("Jogo terminado em "+ finished + " segundos\n");
-            broadcast("Bem vindo ao servidor!\nLista de comandos:\nIniciar [n] - inicia o jogo com n palavras a serem digitadas,"+
+            broadcast("Bem vindo ao servidor!\nLista de comandos:\nIniciar [n] - inicia o jogo com n palavras a serem digitadas, "+
             "padrao: 15 palavras\nLimpar - limpa o console\nSair - desconecta-se da sala\n");
         } else {
             //caso a partida nao foi finalizada por causa da desconexao de todos jogadores
